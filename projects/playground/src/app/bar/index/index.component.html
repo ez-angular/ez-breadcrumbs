@@ -1,0 +1,24 @@
+<table style="width:100%">
+  <colgroup>
+    <col style="width: 180px" />
+    <col style="width: 180px" />
+    <col />
+    <col style="width: 90px" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>E-mail</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of data">
+      <td>{{person.firstName}}</td>
+      <td>{{person.lastName}}</td>
+      <td>{{person.email}}</td>
+      <td><a [routerLink]="['/', 'bar', 'detail', person.id]">Edit</a></td>
+    </tr>
+  </tbody>
+</table>
