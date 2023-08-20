@@ -1,0 +1,31 @@
+:host {
+  display: block;
+
+  ol {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      display: inline;
+
+      & + li {
+        &::before {
+          display: inline-block;
+          margin: 0 .5rem;
+          transform: rotate(15deg);
+          border-right-width: 0.1rem;
+          border-right-style: solid;
+          height: .75rem;
+          content: "";
+        }
+      }
+
+      a[aria-current="page"] {
+        color: inherit;
+        font-weight: 700;
+        text-decoration: none;
+      }
+    }
+  }
+}

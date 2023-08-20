@@ -1,0 +1,14 @@
+<header>
+  <nav>
+    <a href="/"><img alt="Logo" src="assets/img/logo.svg" height="70"></a>
+    <ul>
+      <li><a [routerLink]="['/', 'foo']" [queryParams]="{ foo: 'baz' }">Foo</a></li>
+      <li><a [routerLink]="['/', 'bar']">Bar</a></li>
+      <li><a [routerLink]="['/', 'baz']">Baz</a></li>
+    </ul>
+  </nav>
+  <ez-breadcrumbs/>
+</header>
+<main>
+  <router-outlet/>
+</main>

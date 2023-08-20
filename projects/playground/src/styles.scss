@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import "mvp.css";
+
+:root {
+  --hover-brightness: .5;
+  --color-accent: #08374E15;
+  --color-bg-secondary: #e4e4e4;
+  --color-link: #0D7CE9;
+  --color-secondary: #920de9;
+  --color-secondary-accent: #920de90b;
+  --color-table: #0D7CE9;
+  --color-text: #222;
+  --font-family: 'Rubik', sans-serif;
+}
+
+table {
+  display: table;
+}
+
+button + button {
+  margin-left: 1rem;
+}
+
+form {
+  > h2 {
+    margin-top: 0;
+  }
+}
+
+main {
+  padding-top: 0;
+}
+
+header {
+  > nav {
+    > a{
+      &:hover {
+        filter: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Edit</h2>
+  <label for="input1">Input label:</label>
+  <input type="text" formControlName="firstName" size="20" placeholder="First name">
+  <label for="input1">Input label:</label>
+  <input type="text" formControlName="lastName" size="20" placeholder="Last name">
+  <label for="input1">Input label:</label>
+  <input type="text" formControlName="email" size="20" placeholder="E-mail">
+  <button type="submit" [disabled]="form.pristine">Save</button>
+  <button type="button" [disabled]="form.pristine" (click)="reset()">Reset</button>
+</form>

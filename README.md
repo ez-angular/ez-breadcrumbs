@@ -1,27 +1,97 @@
-# Ez
+# ez-breadcrumbs
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+A component that automatically lists breadcrumbs based on the currently routed components.
 
-## Development server
+## Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+> **_TL;DR:_** Import `EzBreadcrumbsModule.forRoot()`, add `<ez-breadcrumbs/>`, use `breadcrumb('Label')` or an injected `BreadcrumbRef`'s label property to set a routed component's breadcrumb.
 
-## Code scaffolding
+First, add the `EzBreadcrumbsModule` to your `AppModule`'s imports via the `forRoot` method:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { EzBreadcrumbsModule } from 'ez-breadcrumbs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-## Build
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, EzBreadcrumbsModule.forRoot()],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+> **_NOTE:_** Also import the `EzBreadcrumbsModule` in all applicable lazy loaded modules (without using `forRoot`).
 
-## Running unit tests
+Second, add the `EzBreadcrumbsComponent` to your template:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import { Component, inject } from '@angular/core';
+import { BreadcrumbsService } from 'ez-breadcrumbs';
 
-## Running end-to-end tests
+@Component({
+  selector: 'app-root',
+  template: `
+    <header>
+      <ez-breadcrumbs/>
+    </header>
+    <main>
+      <router-outlet/>
+    </main>
+  `
+})
+export class AppComponent { }
+```
+Finally, in your routed components use the `breadcrumb` function in the constructor to set the label of the component's breadcrumb. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```typescript
+import { Component } from '@angular/core';
+import { breadcrumb } from 'ez-breadcrumbs';
 
-## Further help
+@Component({
+  selector: 'app-foo',
+  template: `
+    <p>foo works!</p>
+  `
+})
+export class FooComponent {
+  constructor() {
+    breadcrumb('Foo');
+  }
+}
+```
+> **_NOTE:_** Breadcrumbs will only be shown if they have a label set. 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Alternatively, inject a `BreadcrumbRef` and use it to set the label. This way, the label can be updated at any time.
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { BreadcrumbRef } from 'ez-breadcrumbs';
+
+@Component({
+  selector: 'app-foo',
+  template: `
+    <p>foo works!</p>
+  `
+})
+export class FooComponent {
+  private _breadcrumb = inject(BreadcrumbRef);
+
+  ngOnInit(): void {
+    this._breadcrumb.label = 'Foo'
+  }
+}
+```
+
+> **_NOTE:_** Only components activated in primary outlets can have breadcrumbs.
+
+> **_NOTE:_** The home breadcrumb's default label is `'Home'`. To customize (or translate) the label, see the I18n section below.
+
+If the `EzBreadcrumbsComponent` doesn't fit your needs, you can create your own component and subscribe to the `breadcrumbs$` observable on the `EzBreadcrumbs` service to get a list of breadcrumbs to display. The observable also emits when the contents of any breadcrumb change.
+
+## I18n
+
+Text strings used by the `EzBreadcrumbsComponent` are provided through `EzBreadcrumbsIntl`. Localization of these messages can be done by providing a subclass with translated values in your application root module.
