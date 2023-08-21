@@ -1,6 +1,10 @@
 {
   "name": "ez-breadcrumbs",
   "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ez-angular/ez-breadcrumbs"
+  },
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0"
