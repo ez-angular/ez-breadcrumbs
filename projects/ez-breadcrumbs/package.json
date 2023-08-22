@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/ez-angular/ez-breadcrumbs"
   },
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0"
