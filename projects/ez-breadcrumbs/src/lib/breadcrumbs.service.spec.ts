@@ -1,13 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-
+import { classWithProviders } from '../testing/class-with-providers';
+import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
 import { EzBreadcrumbs } from './breadcrumbs.service';
 
 describe('BreadcrumbsService', () => {
   let service: EzBreadcrumbs;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(EzBreadcrumbs);
+    service = classWithProviders(EzBreadcrumbs, [{ provide: EzBreadcrumbsIntl, useValue: {} }]);
   });
 
   it('should be created', () => {
