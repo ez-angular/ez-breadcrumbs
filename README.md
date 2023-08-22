@@ -1,6 +1,6 @@
 # ez-breadcrumbs
 
-A component that automatically lists breadcrumbs based on the currently routed components.
+An angular component that automatically lists breadcrumbs based on the currently routed components.
 
 ## Usage
 
