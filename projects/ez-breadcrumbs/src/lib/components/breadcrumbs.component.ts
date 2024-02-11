@@ -1,8 +1,10 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { map, merge, startWith, switchMap } from 'rxjs';
-import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
-import { EzBreadcrumbs } from './breadcrumbs.service';
+import { EzBreadcrumbsIntl } from '../breadcrumbs-intl';
+import { EzBreadcrumbs } from '../services/breadcrumbs.service';
 
 /**
  * A component for displaying breadcrumbs.
@@ -16,7 +18,12 @@ import { EzBreadcrumbs } from './breadcrumbs.service';
     'class': 'ez-breadcrumbs',
     'role': 'navigation',
     '[attr.aria-label]': 'ariaLabel'
-  }
+  },
+  imports: [
+    AsyncPipe,
+    RouterLink
+  ],
+  standalone: true
 })
 export class EzBreadcrumbsComponent {
   /**

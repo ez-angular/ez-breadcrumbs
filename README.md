@@ -2,11 +2,52 @@
 
 An angular component that automatically lists breadcrumbs based on the currently routed components.
 
-## Usage
+## How to use
 
-> **_TL;DR:_** Import `EzBreadcrumbsModule.forRoot()`, add `<ez-breadcrumbs/>`, use `breadcrumb('Label')` or an injected `BreadcrumbRef`'s label property to set a routed component's breadcrumb.
+### Using Standalone Components
 
-First, add the `EzBreadcrumbsModule` to your `AppModule`'s imports via the `forRoot` method:
+First, add a call to `provideBreadcrumbs()` to you `main.ts` file.
+
+```typescript
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter([/* app routes */]),
+    provideBreadcrumbs(),
+    // ...
+  ]
+});
+```
+
+Import the `EzBreadcrumbsComponent` into the component and use it in your template via `<ez-breadcrumbs/>`. Also import the `EzRouterOutlet` alongside Angular's `RouterOutlet` in any component containing a (primary) router outlet.
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { EzRouterOutlet } from 'ez-breadcrumbs';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <header>
+      <ez-breadcrumbs/>
+    </header>
+    <main>
+      <router-outlet/>
+    </main>
+  `,
+  imports: [
+    RouterOutlet,
+    EzBreadcrumbsComponent,
+    EzRouterOutlet
+  ]
+  standalone: true
+})
+export class AppComponent { }
+```
+
+### Using NgModules
+
+First, add the `EzBreadcrumbsModule` to your `AppModule`'s imports via the `forRoot` method. Also import the `EzBreadcrumbsModule` in all applicable lazy loaded modules.
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -24,13 +65,10 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-> **_NOTE:_** Also import the `EzBreadcrumbsModule` in all applicable lazy loaded modules (without using `forRoot`).
-
-Second, add the `EzBreadcrumbsComponent` to your template:
+Second, add `<ez-breadcrumbs/>` to your component's template:
 
 ```typescript
 import { Component, inject } from '@angular/core';
-import { BreadcrumbsService } from 'ez-breadcrumbs';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +83,10 @@ import { BreadcrumbsService } from 'ez-breadcrumbs';
 })
 export class AppComponent { }
 ```
-Finally, in your routed components use the `breadcrumb` function in the constructor to set the label of the component's breadcrumb. 
+
+### Setting the breadcrumbs
+
+In your routed components use the `breadcrumb` function within the constructor to set the label of the component's breadcrumb. 
 
 ```typescript
 import { Component } from '@angular/core';
@@ -63,8 +104,6 @@ export class FooComponent {
   }
 }
 ```
-> **_NOTE:_** Breadcrumbs will only be shown if they have a label set. 
-
 Alternatively, inject a `BreadcrumbRef` and use it to set the label. This way, the label can be updated at any time.
 
 ```typescript
@@ -86,11 +125,11 @@ export class FooComponent {
 }
 ```
 
-> **_NOTE:_** Only components activated in primary outlets can have breadcrumbs.
+Note that only components activated in primary outlets can have breadcrumbs.
 
-> **_NOTE:_** The home breadcrumb's default label is `'Home'`. To customize (or translate) the label, see the I18n section below.
+Also note that the home breadcrumb's default label is `'Home'`. To customize (or translate) the label, see the I18n section below.
 
-If the `EzBreadcrumbsComponent` doesn't fit your needs, you can create your own component and subscribe to the `breadcrumbs$` observable on the `EzBreadcrumbs` service to get a list of breadcrumbs to display. The observable also emits when the contents of any breadcrumb change.
+If the `EzBreadcrumbsComponent` doesn't fit your needs, you can create your own component and subscribe to the `breadcrumbs$` observable on the `EzBreadcrumbs` service to get a list of breadcrumbs to display. The observable also emits when the content of any breadcrumb changes.
 
 ## I18n
 

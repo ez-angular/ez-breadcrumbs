@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BreadcrumbRef } from './breadcrumb-ref';
-import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
+import { BreadcrumbRef } from '../breadcrumb-ref';
+import { EzBreadcrumbsIntl } from '../breadcrumbs-intl';
 
 /**
  * Service that manages the breadcrumbs.

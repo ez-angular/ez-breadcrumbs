@@ -1,5 +1,5 @@
-import { classWithProviders } from '../testing/class-with-providers';
-import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
+import { classWithProviders } from '../../testing/class-with-providers';
+import { EzBreadcrumbsIntl } from '../breadcrumbs-intl';
 import { EzBreadcrumbs } from './breadcrumbs.service';
 
 describe('BreadcrumbsService', () => {

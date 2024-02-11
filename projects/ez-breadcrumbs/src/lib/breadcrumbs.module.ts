@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
-import { EzBreadcrumbsComponent } from './breadcrumbs.component';
-import { EzBreadcrumbsDirective } from './breadcrumbs.directive';
-import { EzBreadcrumbs } from './breadcrumbs.service';
+import { EzBreadcrumbsComponent } from './components/breadcrumbs.component';
+import { EzRouterOutlet } from './directives/router-outlet';
+import { EzBreadcrumbs } from './services/breadcrumbs.service';
 
 /**
  * @description
@@ -17,9 +16,8 @@ import { EzBreadcrumbs } from './breadcrumbs.service';
  * The `forRoot()` method provides that service in addition to the component and directive.
  */
 @NgModule({
-  declarations: [EzBreadcrumbsComponent, EzBreadcrumbsDirective],
-  imports: [CommonModule, RouterModule],
-  exports: [EzBreadcrumbsComponent, EzBreadcrumbsDirective]
+  imports: [EzBreadcrumbsComponent, EzRouterOutlet, RouterModule],
+  exports: [EzBreadcrumbsComponent, EzRouterOutlet]
 })
 export class EzBreadcrumbsModule {
   /**

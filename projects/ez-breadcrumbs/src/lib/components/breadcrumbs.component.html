@@ -1,0 +1,10 @@
+<ol>
+  @for(b of breadcrumbs$ | async; track b; let last = $last) {
+    <li>
+      <a [routerLink]="b.url"
+         [queryParams]="b.queryParams"
+         [fragment]="b.fragment"
+         [attr.aria-current]="last ? 'page' : null">{{ b.label }}</a>
+    </li>
+  }
+</ol>

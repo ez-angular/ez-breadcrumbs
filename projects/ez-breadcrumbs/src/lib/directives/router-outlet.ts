@@ -1,8 +1,8 @@
 import { DestroyRef, Directive, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
-import { BreadcrumbRef } from './breadcrumb-ref';
-import { EzBreadcrumbs } from './breadcrumbs.service';
+import { BreadcrumbRef } from '../breadcrumb-ref';
+import { EzBreadcrumbs } from '../services/breadcrumbs.service';
 
 /**
  * A directive that is used to provide a breadcrumb reference to a component activated by a
@@ -12,9 +12,10 @@ import { EzBreadcrumbs } from './breadcrumbs.service';
  */
 @Directive({
   selector: 'router-outlet:not([name])',
-  providers: [{ provide: BreadcrumbRef, useFactory: () => new BreadcrumbRef() }]
+  providers: [{ provide: BreadcrumbRef, useFactory: () => new BreadcrumbRef() }],
+  standalone: true
 })
-export class EzBreadcrumbsDirective {
+export class EzRouterOutlet {
   private _activeComponent: Object | null = null;
 
   /**

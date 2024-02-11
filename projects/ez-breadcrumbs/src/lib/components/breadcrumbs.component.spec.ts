@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { of } from 'rxjs';
-import { BreadcrumbRef } from './breadcrumb-ref';
-import { EzBreadcrumbsIntl } from './breadcrumbs-intl';
+import { BreadcrumbRef } from '../breadcrumb-ref';
+import { EzBreadcrumbsIntl } from '../breadcrumbs-intl';
+import { EzBreadcrumbs } from '../services/breadcrumbs.service';
 import { EzBreadcrumbsComponent } from './breadcrumbs.component';
-import { EzBreadcrumbs } from './breadcrumbs.service';
 
 describe('BreadcrumbsComponent', () => {
   let component: EzBreadcrumbsComponent;

@@ -1,7 +1,9 @@
+export { breadcrumb } from './lib/breadcrumb';
 export { BreadcrumbRef } from './lib/breadcrumb-ref';
 export { EzBreadcrumbsIntl } from './lib/breadcrumbs-intl';
-export { EzBreadcrumbsComponent } from './lib/breadcrumbs.component';
-export { EzBreadcrumbsDirective } from './lib/breadcrumbs.directive';
 export { EzBreadcrumbsModule } from './lib/breadcrumbs.module';
-export { EzBreadcrumbs } from './lib/breadcrumbs.service';
-export { breadcrumb } from './lib/helpers';
+export { EzBreadcrumbsComponent } from './lib/components/breadcrumbs.component';
+export { EzRouterOutlet } from './lib/directives/router-outlet';
+export { provideBreadcrumbs } from './lib/provide-breadcrumbs';
+export { EzBreadcrumbs } from './lib/services/breadcrumbs.service';
+
