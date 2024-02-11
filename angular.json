@@ -15,11 +15,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/playground",
             "index": "projects/playground/src/index.html",
-            "main": "projects/playground/src/main.ts",
+            "browser": "projects/playground/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -51,9 +51,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -65,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "playground:build:production"
+              "buildTarget": "playground:build:production"
             },
             "development": {
-              "browserTarget": "playground:build:development"
+              "buildTarget": "playground:build:development"
             }
           },
           "defaultConfiguration": "development"
